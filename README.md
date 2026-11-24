@@ -1,6 +1,6 @@
 RetroTube Cydia repository
 
-The planned flat APT endpoint is https://rtn68tg94j-del.github.io/RetroTube-Repo/ .
+The flat APT endpoint is https://rtn68tg94j-del.github.io/RetroTube-Repo/ .
 The source entry is `deb https://rtn68tg94j-del.github.io/RetroTube-Repo/ ./`.
 
 Packages target iphoneos-arm (ARMv7) and iOS 9.0 or later, including iOS 9.3.5.

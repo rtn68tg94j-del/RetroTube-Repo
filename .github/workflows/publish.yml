@@ -28,7 +28,7 @@ jobs:
       - name: Prepare public files
         run: |
           mkdir _site
-          cp Packages Packages.gz Release Release.gpg InRelease Release.key .nojekyll _site/
+          cp Packages Packages.gz Release Release.gpg InRelease Release.key .nojekyll index.html _site/
           cp -R pool _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
@@ -78,7 +78,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir "$RUNNER_TEMP/live-repo"
-          for file in Packages Packages.gz Release Release.gpg InRelease Release.key pool/*.deb; do
+          for file in index.html Packages Packages.gz Release Release.gpg InRelease Release.key pool/*.deb; do
             destination="$RUNNER_TEMP/live-repo/$file"
             mkdir -p "$(dirname "$destination")"
             curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
