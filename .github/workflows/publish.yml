@@ -1,0 +1,35 @@
+name: Verify and publish Cydia repository
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cydia-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify signed indexes and packages
+        run: python3 scripts/verify.py
+      - name: Prepare public files
+        run: |
+          mkdir _site
+          cp Packages Packages.gz Release Release.gpg InRelease Release.key .nojekyll _site/
+          cp -R pool _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@v4
+        id: deployment

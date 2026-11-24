@@ -1,0 +1,17 @@
+Origin: RetroTube
+Label: RetroTube
+Suite: stable
+Version: 1.0
+Codename: retrotube
+Architectures: iphoneos-arm
+Description: RetroTube native video player for legacy iOS
+Date: Tue, 24 Nov 2026 11:42:37 GMT
+MD5Sum:
+ a8f9304d3d7a2b811beb597c5f91347c 495 Packages
+ cdf05fbaa4570b9a84d5a735751323bc 368 Packages.gz
+SHA1:
+ 336e877df1c79b21dba1e80e86207f83d5183ee4 495 Packages
+ d90f1a3287cd9c0c794bdd7cf77ab57d0ebdc14c 368 Packages.gz
+SHA256:
+ 7d4e95582c906537ea9fbbaa8281ffffce0b8903a305fe0f995a939cad78fb0f 495 Packages
+ 9eb7c2d9b6bf9736326deaa189e9f6d9f95f3b9f5fcf0ea7a26f7bed99f73b38 368 Packages.gz

@@ -1,0 +1,34 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+Origin: RetroTube
+Label: RetroTube
+Suite: stable
+Version: 1.0
+Codename: retrotube
+Architectures: iphoneos-arm
+Description: RetroTube native video player for legacy iOS
+Date: Tue, 24 Nov 2026 11:42:37 GMT
+MD5Sum:
+ a8f9304d3d7a2b811beb597c5f91347c 495 Packages
+ cdf05fbaa4570b9a84d5a735751323bc 368 Packages.gz
+SHA1:
+ 336e877df1c79b21dba1e80e86207f83d5183ee4 495 Packages
+ d90f1a3287cd9c0c794bdd7cf77ab57d0ebdc14c 368 Packages.gz
+SHA256:
+ 7d4e95582c906537ea9fbbaa8281ffffce0b8903a305fe0f995a939cad78fb0f 495 Packages
+ 9eb7c2d9b6bf9736326deaa189e9f6d9f95f3b9f5fcf0ea7a26f7bed99f73b38 368 Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAEBCAAdFiEEefYLlcN5ny6DaV7mj8se32CZ4sQFAmsFeC0ACgkQj8se32CZ
+4sRe/AwAyz+OIdFoPGw0WIHTs6KXttCe/rWJ0nzLdLNYScu1x6g0w/pFvwRHUZY4
+uC1DryCTh+U0ejfexwDaCvCw7E7tfZmsvM0VZlMMjg1PaKrDjbzEtG6HFB/bmTRi
+Wuis7gFlqPtyk9Zy1/YOHhbQzcsOkC8EUVGd3TwgZyQ0V7+9X9V7+9z2bzOQqcJ9
+OwBIwGYTT98f0Vxvf8HsIo0QtZ3o+N9SI9ohjwtP118satk+uMHvbN8+N6jLDZZG
+Ul3fCzjOPvC22doLzxackFGLGxoOhtZkq5RT94KV3mwi67fjcZ5CuLDDVcAc8CmS
+W3l7FMcY3hKa1yrtn4IahQQRr06jGCevKBW05u8pxrAjozx/XW2WYUFmJeWvcKhv
+b6PLp5uA38R1euJKcwEoH8kXi5kCLAyKsrLry1n4v5KhOlt9EsErJdd1qEO6yMEC
+fLEhh2K6g5DsW9n1kzo/xiCcnriK5IB2jtmchkwEubSCWc0DJB3nYYw7YfbytahA
+Xrkkv46w
+=+PLO
+-----END PGP SIGNATURE-----
