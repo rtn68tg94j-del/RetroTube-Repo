@@ -49,3 +49,17 @@ The former Release.key URL is retired because its extension was served as
 application/vnd.apple.keynote. Release.asc must be served as application/pgp-keys.
 Deployment verifies the actual HTTP Content-Type and the unchanged key bytes.
 The new extension does not change the signing key or its fingerprint.
+
+The separate test source is https://rtn68tg94j-del.github.io/RetroTube-Repo/test/ .
+Its flat APT entry is
+`deb https://rtn68tg94j-del.github.io/RetroTube-Repo/test/ ./`.
+It contains test version 0.1.2, signed with the same repository key.
+The main source continues to offer 0.1.1. Adding the test source makes 0.1.2
+available as the newer candidate. Installation does not automatically register
+the application. The icon may be absent and device behavior remains unverified.
+The experimental registration tool is excluded from both the DEB and this source.
+
+To regenerate only the test indexes, run
+`python3 scripts/build.py test --label 'RetroTube Test' --suite testing --codename retrotube-test`,
+copy the signed index files from test/_site to test/, and run
+`python3 scripts/verify.py test`.

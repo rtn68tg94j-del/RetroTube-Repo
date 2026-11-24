@@ -1,0 +1,17 @@
+Origin: RetroTube
+Label: RetroTube Test
+Suite: testing
+Version: 1.0
+Codename: retrotube-test
+Architectures: iphoneos-arm
+Description: RetroTube native video player for legacy iOS
+Date: Tue, 24 Nov 2026 13:14:50 GMT
+MD5Sum:
+ 340d6f51e17e0bdc85b0afb8ebe990b4 483 Packages
+ 25d84325c3f04b8b9c3b9258e0482bc5 360 Packages.gz
+SHA1:
+ 7bb9f19cf223fee39a5cbb74e6dd8d0b8da49899 483 Packages
+ 2e67c60a20eb370b8ea729f26c30d43ecc5c366f 360 Packages.gz
+SHA256:
+ 9e20c5e0b760b0bd3ce4483d7e3657088229fd6f198084bb5846e46c77dc2aca 483 Packages
+ c83bab7f1cddd6a42fda1e74977b2342d1888075455be18040d1ada685f94e1e 360 Packages.gz

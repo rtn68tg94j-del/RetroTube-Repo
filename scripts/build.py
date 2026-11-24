@@ -1,4 +1,5 @@
 """Generate and verify a flat, signed APT repository for legacy Cydia."""
+import argparse
 import gzip
 import hashlib
 import os
@@ -9,7 +10,13 @@ import subprocess
 import tempfile
 from email.utils import formatdate
 
-root = Path(__file__).resolve().parent.parent
+parser = argparse.ArgumentParser()
+parser.add_argument("root", nargs="?", type=Path, default=Path(__file__).resolve().parent.parent)
+parser.add_argument("--label", default="RetroTube")
+parser.add_argument("--suite", default="stable")
+parser.add_argument("--codename", default="retrotube")
+args = parser.parse_args()
+root = args.root.resolve()
 os.chdir(root)
 site = root / "_site"
 if site.exists():
@@ -53,10 +60,10 @@ assert gzip.decompress((site / "Packages.gz").read_bytes()) == index
 
 release = [
     "Origin: RetroTube",
-    "Label: RetroTube",
-    "Suite: stable",
+    "Label: " + args.label,
+    "Suite: " + args.suite,
     "Version: 1.0",
-    "Codename: retrotube",
+    "Codename: " + args.codename,
     "Architectures: iphoneos-arm",
     "Description: RetroTube native video player for legacy iOS",
     "Date: " + formatdate(usegmt=True),

@@ -1,11 +1,14 @@
 """Validate published indexes, signed Release and every referenced package."""
+import argparse
 import gzip
 import hashlib
 from pathlib import Path
 import subprocess
 import tempfile
 
-root = Path(__file__).resolve().parent.parent
+parser = argparse.ArgumentParser()
+parser.add_argument("root", nargs="?", type=Path, default=Path(__file__).resolve().parent.parent)
+root = parser.parse_args().root.resolve()
 with tempfile.TemporaryDirectory() as temporary:
     home = Path(temporary)
     home.chmod(0o700)

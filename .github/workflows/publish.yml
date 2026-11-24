@@ -22,14 +22,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Verify signed indexes and packages
-        run: python3 scripts/verify.py
+        run: |
+          python3 scripts/verify.py
+          python3 scripts/verify.py test
       - name: Test legacy APT 0.8 with detached Release signature
-        run: docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh /repo 0.1.1
+          docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh /repo/test 0.1.2
       - name: Prepare public files
         run: |
           mkdir _site
           cp Packages Packages.gz Release Release.gpg InRelease Release.asc .nojekyll index.html _site/
           cp -R pool _site/
+          mkdir _site/test
+          cp test/Packages test/Packages.gz test/Release test/Release.gpg test/InRelease test/Release.asc test/index.html _site/test/
+          cp -R test/pool _site/test/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         id: upload
@@ -78,7 +85,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir "$RUNNER_TEMP/live-repo"
-          for file in index.html Packages Packages.gz Release Release.gpg InRelease Release.asc pool/*.deb; do
+          for file in index.html Packages Packages.gz Release Release.gpg InRelease Release.asc pool/*.deb test/index.html test/Packages test/Packages.gz test/Release test/Release.gpg test/InRelease test/Release.asc test/pool/*.deb; do
             destination="$RUNNER_TEMP/live-repo/$file"
             mkdir -p "$(dirname "$destination")"
             curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
@@ -92,3 +99,5 @@ jobs:
           test "${content_type%%;*}" = application/pgp-keys
           retired_status="$(curl --silent --show-error --proto '=https' -o /dev/null -w '%{http_code}' "${REPO_URL%/}/Release.key")"
           test "$retired_status" = 404
+          test_content_type="$(curl --fail --silent --show-error --proto '=https' -o /dev/null -w '%{content_type}' "${REPO_URL%/}/test/Release.asc")"
+          test "${test_content_type%%;*}" = application/pgp-keys
