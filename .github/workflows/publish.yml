@@ -29,7 +29,7 @@ jobs:
       - name: Test legacy APT 0.8 with detached Release signature
         run: |
           docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh /repo 0.1.1
-          docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh /repo/test 0.2.3
+          docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh /repo/test 0.2.4
       - name: Prepare public files
         run: |
           mkdir _site
