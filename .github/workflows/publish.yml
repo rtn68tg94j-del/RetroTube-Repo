@@ -35,3 +35,19 @@ jobs:
           path: _site
       - uses: actions/deploy-pages@v4
         id: deployment
+      - name: Verify live HTTPS and published bytes
+        env:
+          REPO_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -euo pipefail
+          mkdir "$RUNNER_TEMP/live-repo"
+          for file in Packages Packages.gz Release Release.gpg InRelease Release.key pool/*.deb; do
+            destination="$RUNNER_TEMP/live-repo/$file"
+            mkdir -p "$(dirname "$destination")"
+            curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' \
+              --tlsv1.2 --tls-max 1.2 --http1.1 --curves prime256v1 \
+              --ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256' \
+              --retry 8 --retry-delay 5 --retry-all-errors \
+              "${REPO_URL%/}/$file" -o "$destination"
+            cmp "$file" "$destination"
+          done
