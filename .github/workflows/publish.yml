@@ -23,12 +23,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify signed indexes and packages
         run: |
+          python3 scripts/test_signing_policy.py
           python3 scripts/verify.py
           python3 scripts/verify.py test
       - name: Test legacy APT 0.8 with detached Release signature
         run: |
           docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh /repo 0.1.1
-          docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh /repo/test 0.1.2
+          docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" ubuntu:12.04@sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005 /bin/sh /repo/scripts/test-legacy-apt.sh /repo/test 0.2.0
       - name: Prepare public files
         run: |
           mkdir _site

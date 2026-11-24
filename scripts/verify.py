@@ -5,10 +5,12 @@ import hashlib
 from pathlib import Path
 import subprocess
 import tempfile
+from signing_policy import verify_public_key
 
 parser = argparse.ArgumentParser()
 parser.add_argument("root", nargs="?", type=Path, default=Path(__file__).resolve().parent.parent)
 root = parser.parse_args().root.resolve()
+key = verify_public_key(root)
 with tempfile.TemporaryDirectory() as temporary:
     home = Path(temporary)
     home.chmod(0o700)
@@ -16,13 +18,15 @@ with tempfile.TemporaryDirectory() as temporary:
     fingerprint = subprocess.check_output(
         ["gpg", "--homedir", str(home), "--with-colons", "--list-keys"], text=True
     )
-    assert "79F60B95C3799F2E83695EE68FCB1EDF6099E2C4" in fingerprint
+    assert key in fingerprint
     for args in [[str(root / "Release.gpg"), str(root / "Release")], [str(root / "InRelease")]]:
         status = subprocess.check_output(
             ["gpg", "--homedir", str(home), "--batch", "--status-fd", "1", "--verify", *args],
             text=True,
         )
-        assert "[GNUPG:] VALIDSIG 79F60B95C3799F2E83695EE68FCB1EDF6099E2C4 " in status
+        assert f"[GNUPG:] VALIDSIG {key} " in status
+        valid = [line.split() for line in status.splitlines() if line.startswith("[GNUPG:] VALIDSIG ")]
+        assert len(valid) == 1 and valid[0][9] == "8", "Release signature must use SHA-256"
         assert "[GNUPG:] GOODSIG " in status
         assert "[GNUPG:] EXPKEYSIG " not in status
     clear = subprocess.check_output(["gpg", "--homedir", str(home), "--batch", "--decrypt", str(root / "InRelease")])

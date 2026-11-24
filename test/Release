@@ -5,13 +5,13 @@ Version: 1.0
 Codename: retrotube-test
 Architectures: iphoneos-arm
 Description: RetroTube native video player for legacy iOS
-Date: Tue, 24 Nov 2026 13:14:50 GMT
+Date: Tue, 24 Nov 2026 17:34:03 GMT
 MD5Sum:
- 340d6f51e17e0bdc85b0afb8ebe990b4 483 Packages
- 25d84325c3f04b8b9c3b9258e0482bc5 360 Packages.gz
+ 0fefc853065097429f0c95bad4e198eb 975 Packages
+ 40f0cda179f0c70f43d06a255dcf4ce9 496 Packages.gz
 SHA1:
- 7bb9f19cf223fee39a5cbb74e6dd8d0b8da49899 483 Packages
- 2e67c60a20eb370b8ea729f26c30d43ecc5c366f 360 Packages.gz
+ fada6980dd3f83eb39cd1148dabc565edb08528f 975 Packages
+ 9610e30734157aa01415f7e68a0e29a7fc0646a4 496 Packages.gz
 SHA256:
- 9e20c5e0b760b0bd3ce4483d7e3657088229fd6f198084bb5846e46c77dc2aca 483 Packages
- c83bab7f1cddd6a42fda1e74977b2342d1888075455be18040d1ada685f94e1e 360 Packages.gz
+ 291c724fee48f74dcb4f9ad45e73969d6c17571555d8c77a7134a7ba3643f0b9 975 Packages
+ e919c5a4563a724ec0b01daf38fbad7c6e293f58b9b3113131fde538e74fe43b 496 Packages.gz

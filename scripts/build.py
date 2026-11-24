@@ -9,6 +9,7 @@ import struct
 import subprocess
 import tempfile
 from email.utils import formatdate
+from signing_policy import verify_signing_key
 
 parser = argparse.ArgumentParser()
 parser.add_argument("root", nargs="?", type=Path, default=Path(__file__).resolve().parent.parent)
@@ -17,6 +18,7 @@ parser.add_argument("--suite", default="stable")
 parser.add_argument("--codename", default="retrotube")
 args = parser.parse_args()
 root = args.root.resolve()
+key = verify_signing_key(root)  # Fail before creating outputs if the key is wrong.
 os.chdir(root)
 site = root / "_site"
 if site.exists():
@@ -76,8 +78,7 @@ for field, algorithm in [("MD5Sum", "md5"), ("SHA1", "sha1"), ("SHA256", "sha256
 (site / "Release").write_text("\n".join(release) + "\n")
 shutil.copyfile(root / "Release.asc", site / "Release.asc")
 (site / ".nojekyll").touch()
-key = "79F60B95C3799F2E83695EE68FCB1EDF6099E2C4"
-common = ["gpg", "--batch", "--yes", "--local-user", key, "--digest-algo", "SHA256"]
+common = ["gpg", "--batch", "--yes", "--local-user", key + "!", "--digest-algo", "SHA256"]
 subprocess.run(common + ["--armor", "--detach-sign", "--output", str(site / "Release.gpg"), str(site / "Release")], check=True)
 subprocess.run(common + ["--clearsign", "--output", str(site / "InRelease"), str(site / "Release")], check=True)
 with tempfile.TemporaryDirectory() as directory:
