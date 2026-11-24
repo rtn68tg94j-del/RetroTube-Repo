@@ -9,7 +9,7 @@ root = Path(__file__).resolve().parent.parent
 with tempfile.TemporaryDirectory() as temporary:
     home = Path(temporary)
     home.chmod(0o700)
-    subprocess.run(["gpg", "--homedir", str(home), "--batch", "--import", str(root / "Release.key")], check=True)
+    subprocess.run(["gpg", "--homedir", str(home), "--batch", "--import", str(root / "Release.asc")], check=True)
     fingerprint = subprocess.check_output(
         ["gpg", "--homedir", str(home), "--with-colons", "--list-keys"], text=True
     )

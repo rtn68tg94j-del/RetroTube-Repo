@@ -8,12 +8,12 @@
 <p>Источник Cydia для ARMv7 и iOS 9.0–9.3.5. Доступна версия 0.1.1.</p>
 <p>Адрес для добавления в Cydia</p>
 <pre>https://rtn68tg94j-del.github.io/RetroTube-Repo/</pre>
-<p>Перед добавлением источника импортируйте открытый ключ в доверенную связку APT.
+<p>Ключ предназначен для проверки APT. Загружайте и проверяйте его на доверенном компьютере. Перед импортом перенесите файл на iPad через уже используемый безопасный канал, без открытия в Safari или предпросмотре iFile.
 Сверьте отпечаток ключа с отпечатком, полученным от владельца репозитория.</p>
-<p><a href="Release.key">Открытый ключ Release.key</a></p>
+<p><a href="Release.asc" download="RetroTube-Release.asc">Открытый ключ Release.asc</a></p>
 <pre>79F6 0B95 C379 9F2E 8369 5EE6 8FCB 1EDF 6099 E2C4</pre>
 <p>После проверки отпечатка выполните от root</p>
-<pre>apt-key add Release.key</pre>
+<pre>apt-key add Release.asc</pre>
 <p><a href="Packages">Каталог пакетов</a> · <a href="Release">Метаданные</a> ·
 <a href="pool/com.retrotube.app_0.1.1_iphoneos-arm.deb">Скачать DEB 0.1.1</a></p>
 </body>

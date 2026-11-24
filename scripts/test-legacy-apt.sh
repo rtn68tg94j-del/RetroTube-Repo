@@ -3,7 +3,7 @@ set -eu
 # Run inside a disposable Ubuntu container with /repo mounted read-only.
 mkdir /tmp/repo
 cp -R /repo/pool /repo/Packages /repo/Packages.gz /repo/Release /repo/Release.gpg /tmp/repo/
-apt-key add /repo/Release.key
+apt-key add /repo/Release.asc
 printf 'deb file:/tmp/repo ./\n' > /tmp/retrotube.list
 mkdir -p /tmp/lists/partial
 apt-get --version | head -1

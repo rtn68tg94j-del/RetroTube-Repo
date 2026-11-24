@@ -67,7 +67,7 @@ for field, algorithm in [("MD5Sum", "md5"), ("SHA1", "sha1"), ("SHA256", "sha256
         data = (site / filename).read_bytes()
         release.append(f" {hashlib.new(algorithm, data).hexdigest()} {len(data)} {filename}")
 (site / "Release").write_text("\n".join(release) + "\n")
-shutil.copyfile(root / "Release.key", site / "Release.key")
+shutil.copyfile(root / "Release.asc", site / "Release.asc")
 (site / ".nojekyll").touch()
 key = "79F60B95C3799F2E83695EE68FCB1EDF6099E2C4"
 common = ["gpg", "--batch", "--yes", "--local-user", key, "--digest-algo", "SHA256"]
@@ -75,7 +75,7 @@ subprocess.run(common + ["--armor", "--detach-sign", "--output", str(site / "Rel
 subprocess.run(common + ["--clearsign", "--output", str(site / "InRelease"), str(site / "Release")], check=True)
 with tempfile.TemporaryDirectory() as directory:
     keyring = Path(directory) / "trusted.gpg"
-    subprocess.run(["gpg", "--batch", "--yes", "--dearmor", "--output", str(keyring), str(site / "Release.key")], check=True)
+    subprocess.run(["gpg", "--batch", "--yes", "--dearmor", "--output", str(keyring), str(site / "Release.asc")], check=True)
     for args in [
         [str(site / "Release.gpg"), str(site / "Release")],
         [str(site / "InRelease")],
