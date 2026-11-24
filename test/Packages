@@ -238,3 +238,19 @@ Description: Native video browser and MP4/HLS player for legacy iOS.
 Author: RetroTube
 Name: RetroTube
 
+Package: com.retrotube.app
+Version: 0.4.4
+Architecture: iphoneos-arm
+Maintainer: RetroTube
+Installed-Size: 404
+Depends: firmware (>= 9.0)
+Filename: pool/com.retrotube.app_0.4.4_iphoneos-arm.deb
+Size: 192472
+MD5sum: f663295037511f9f386b4977e87c2619
+SHA1: d6b246b70af897a5fb4c56f9617f503e31b84df7
+SHA256: 5a5804dc985bbf8d5cf9f354e5928f642263f0d3efa025464a33860637b53aa7
+Section: Multimedia
+Description: Native video browser and MP4/HLS player for legacy iOS.
+Author: RetroTube
+Name: RetroTube
+
