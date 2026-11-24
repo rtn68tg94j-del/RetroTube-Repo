@@ -37,3 +37,9 @@ The public repository does not require secrets.
 Locally, run `python3 scripts/build.py` with the signing key available in GNUPGHOME,
 copy the generated index and signature files from _site into the repository root,
 then run `python3 scripts/verify.py`.
+
+Validation on 2026-11-24 passed with APT 0.8.16 (Ubuntu 12.04) using
+Release.gpg, and APT 1.0.1 (Ubuntu 14.04) using InRelease.
+Both clients authenticated the metadata and retrieved version 0.1.1 for iphoneos-arm.
+These container checks cover repository formats and signatures. They do not emulate
+Cydia's exact patched APT build or the iOS certificate trust store.

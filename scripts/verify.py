@@ -15,7 +15,13 @@ with tempfile.TemporaryDirectory() as temporary:
     )
     assert "79F60B95C3799F2E83695EE68FCB1EDF6099E2C4" in fingerprint
     for args in [[str(root / "Release.gpg"), str(root / "Release")], [str(root / "InRelease")]]:
-        subprocess.run(["gpg", "--homedir", str(home), "--batch", "--verify", *args], check=True)
+        status = subprocess.check_output(
+            ["gpg", "--homedir", str(home), "--batch", "--status-fd", "1", "--verify", *args],
+            text=True,
+        )
+        assert "[GNUPG:] VALIDSIG 79F60B95C3799F2E83695EE68FCB1EDF6099E2C4 " in status
+        assert "[GNUPG:] GOODSIG " in status
+        assert "[GNUPG:] EXPKEYSIG " not in status
     clear = subprocess.check_output(["gpg", "--homedir", str(home), "--batch", "--decrypt", str(root / "InRelease")])
     assert clear == (root / "Release").read_bytes()
 
