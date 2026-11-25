@@ -43,6 +43,8 @@ jobs:
         id: upload
         with:
           path: _site
+      - name: Wait for Pages artifact registration
+        run: sleep 20
       - name: Deploy verified artifact to GitHub Pages
         uses: actions/deploy-pages@v4
         id: deployment
